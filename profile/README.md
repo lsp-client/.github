@@ -1,53 +1,64 @@
 # LSP Client Ecosystem 🚀
 
-Welcome to the **LSP Client** ecosystem — a professional-grade toolkit and Agent-native ecosystem built around the [Language Server Protocol (LSP)](https://microsoft.github.io/language-server-protocol/). 
-
-We provide a complete stack to transform raw language intelligence into high-fidelity context for humans and AI Agents alike.
+Welcome to the **LSP Client** ecosystem — a professional-grade toolkit and agent-native ecosystem designed to transform the [Language Server Protocol (LSP)](https://microsoft.github.io/language-server-protocol/) into **actionable repository intelligence** for AI Agents and developers.
 
 ---
 
-## 🌟 Core Components
+## 🏛 The Architecture: From Protocol to Intelligence
 
-### 🐍 [Python SDK](https://github.com/lsp-client/lsp-client/tree/main/python-sdk)
-The industrial-strength foundation. A modern, async-first library for fine-grained LSP control.
-- **Mixin Architecture**: Zero-overhead system for automatic capability negotiation and method safety.
-- **Async-First**: Built with `anyio` for high-concurrency tool development.
-- **Production Ready**: Full type safety, explicit environment control, and robust error handling.
+Our ecosystem is built as a layered stack, progressively evolving raw language server capabilities into specialized reasoning "skills" for coding agents.
 
-### 🐳 [Container Registry](https://github.com/lsp-client/lsp-client/tree/main/containers)
-The isolation layer. Optimized, pre-built Docker images for instant, secure server deployment.
-- **Zero-Config Isolation**: Protect your host environment and ensure reproducible analysis.
-- **Auto-Updated**: Weekly builds to keep you at the bleeding edge of language support.
-- **Lean & Fast**: Multi-stage builds for minimal footprint and rapid startup.
+### 1. [LSP Client](https://github.com/lsp-client/lsp-client/tree/main/python-sdk) (The Base)
 
-### 🤖 Agent & MCP Integration
-The intelligence layer. Designed for the next generation of AI tools and coding assistants.
-- **[LSAP (Language Server Agent Protocol)](https://github.com/lsp-client/lsp-client/tree/main/LSAP)**: A semantic abstraction that transforms granular LSP operations into agent-friendly Markdown snapshots.
-- **Model Context Protocol (MCP)**: Standardized integration to expose LSP and LSAP capabilities directly to LLM-powered agents.
-- **Progressive Disclosure**: Engineered to provide high-signal context with minimal noise for autonomous reasoning.
+The industrial-strength foundation. A modern, async-first Python SDK for fine-grained LSP control.
+
+- **Protocol Native**: Full support for LSP specifications with automatic capability negotiation.
+- **Robustness**: Type-safe, async-first (AnyIO), and production-ready.
+- **[Container Registry](https://github.com/lsp-client/lsp-client/tree/main/containers)**: Pre-built, isolated environments for 20+ language servers, enabling instant, zero-config deployment.
+
+### 2. [LSAP](https://github.com/lsp-client/lsp-client/tree/main/LSAP) (The Abstraction)
+
+**Language Server Agent Protocol**. A semantic abstraction layer that transforms granular LSP operations into agent-friendly snapshots.
+
+- **Agent-Centric**: Converts raw JSON-RPC data into structured Markdown/JSON optimized for LLM consumption.
+- **Semantic Context**: Provides high-signal context (e.g., "Summarize this class" instead of just "Get symbols").
+
+### 3. [LSP CLI](https://github.com/lsp-client/lsp-client/tree/main/lsp-cli) (The Tool)
+
+A universal command-line interface that brings LSP and LSAP capabilities to any terminal or script.
+
+- **Human & Machine Friendly**: Use it for manual exploration or as a backend for automation scripts.
+- **Universal Interface**: One CLI to rule all language servers.
+
+### 4. [LSP Skill](https://github.com/lsp-client/lsp-client/tree/main/lsp-skill) (The Intelligence)
+
+High-level repository analysis capabilities designed specifically for **Coding Agents** (like Opencode).
+
+- **Deep Understanding**: Provides cross-file reference analysis, project-wide symbol mapping, and architectural insights.
+- **Plugin for Agents**: Acts as a skill that agents can invoke to perform complex repository-wide tasks via LSP.
 
 ---
 
 ## 🛠 Supported Languages & Servers
 
-Our ecosystem supports a growing list of language servers, available locally or via our container registry:
+We provide optimized, pre-built [container images](https://github.com/lsp-client/lsp-client/tree/main/containers) for instant, zero-config deployment:
 
-| Language | Server | Container Image |
-| :--- | :--- | :--- |
-| **Python** | Pyright, Pyrefly, Ruff, Ty | `ghcr.io/lsp-client/pyright` |
-| **Rust** | Rust Analyzer | `ghcr.io/lsp-client/rust-analyzer` |
-| **Go** | Gopls | `ghcr.io/lsp-client/gopls` |
-| **TypeScript/JS** | Deno, TS Server, ESLint | `ghcr.io/lsp-client/typescript` |
-| **C/C++** | Clangd | `ghcr.io/lsp-client/clangd` |
-| **Java** | JDTLS | `ghcr.io/lsp-client/jdtls` |
-| **Swift** | SourceKit-LSP | `ghcr.io/lsp-client/sourcekit-lsp` |
-| **Vue** | Volar | `ghcr.io/lsp-client/vue` |
+| Language          | Server        | Container Image                    |
+| :---------------- | :------------ | :--------------------------------- |
+| **Python**        | Pyright, Ruff | `ghcr.io/lsp-client/pyright`       |
+| **Rust**          | Rust Analyzer | `ghcr.io/lsp-client/rust-analyzer` |
+| **Go**            | Gopls         | `ghcr.io/lsp-client/gopls`         |
+| **TypeScript/JS** | TS Server     | `ghcr.io/lsp-client/typescript`    |
+| **C/C++**         | Clangd        | `ghcr.io/lsp-client/clangd`        |
+| **Java**          | JDTLS         | `ghcr.io/lsp-client/jdtls`         |
+| **Swift**         | SourceKit-LSP | `ghcr.io/lsp-client/sourcekit-lsp` |
+| **Vue**           | Volar         | `ghcr.io/lsp-client/vue`           |
 
 ---
 
-## 🚀 Quick Start
+## 🚀 Quick Start (SDK)
 
-Integrate language intelligence into your project using the Python SDK:
+Integrate language intelligence into your Python projects:
 
 ```python
 import anyio
@@ -55,7 +66,7 @@ from lsp_client.clients.pyright import PyrightClient, PyrightContainerServer
 from lsp_client.common import Position
 
 async def main():
-    # Use Pyright in a container for instant isolation and zero configuration
+    # Run Pyright in an isolated container
     async with PyrightClient(server=PyrightContainerServer()) as client:
         definitions = await client.request_definition_locations(
             file_path="app.py",
@@ -71,14 +82,10 @@ anyio.run(main)
 
 ## 🤝 Join the Ecosystem
 
-We are building a robust, open ecosystem for the future of software engineering. 
+We are building the future of AI-native software engineering.
 
-- **Contribute a Server**: Add a new `ContainerFile` to our registry.
-- **Extend the Protocol**: Help us evolve LSAP and the Python SDK.
-- **Build Agents**: Use our tools to create the next generation of AI coding assistants.
-
-Check out our [Contribution Guidelines](https://github.com/lsp-client/lsp-client/blob/main/python-sdk/docs/contribution/) to get started.
-
----
+- **Contribute**: Add new servers to our [Container Registry](https://github.com/lsp-client/lsp-client/tree/main/containers).
+- **Extend**: Help us evolve **LSAP** for better agent reasoning.
+- **Integrate**: Use **LSP Skills** to empower your own AI coding assistants.
 
 Built with ❤️ by the **LSP Client** team.
