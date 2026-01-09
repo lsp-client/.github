@@ -1,5 +1,7 @@
 # LSP Client Ecosystem 🚀
 
+> Please visit our [website](https://lsp-client.github.io)!
+
 Welcome to the **LSP Client** ecosystem — a professional-grade toolkit and agent-native ecosystem designed to transform the [Language Server Protocol (LSP)](https://microsoft.github.io/language-server-protocol/) into **actionable repository intelligence** for AI Agents and developers.
 
 ---
